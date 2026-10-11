@@ -1,0 +1,305 @@
+/* =====================================================================
+   WaterKiosk colour theme for Raven v3 (erp.waterkiosk.africa/raven)
+   Loaded on /raven pages only by the waterkiosk_theme app.
+   Colours: ocean blue -> aqua, with one accent colour per channel.
+   To retune, change the --wk-* values below.
+   ===================================================================== */
+
+:root {
+  --wk-deep: #0a4a85;
+  --wk-blue: #0b74c4;
+  --wk-aqua: #10b4cf;
+  --wk-mint: #19c3a6;
+  --wk-grad: linear-gradient(120deg, #0a4a85 0%, #0b74c4 50%, #10b4cf 100%);
+  --wk-grad-soft: linear-gradient(180deg, #e3f3fc 0%, #eefaf7 100%);
+  --wk-line: #cfe6f4;
+  --wk-own-text: #ffffff;
+  --wk-other-bubble: #ffffff;
+
+  /* channel colours */
+  --wk-c-announce: #f97316;
+  --wk-c-general: #3b82f6;
+  --wk-c-tech: #f59e0b;
+  --wk-c-ops: #14b8a6;
+  --wk-c-hr: #ec4899;
+  --wk-c-fin: #22c55e;
+  --wk-c-mgmt: #8b5cf6;
+  --wk-c-other: #0ea5e9;
+}
+
+/* Light mode: tint Raven's neutral surfaces towards water-blue */
+html.light,
+html:not(.dark) {
+  --surface-sidebar: #e8f5fc;
+  --surface-gray-1: #eef6fb;
+  --surface-gray-2: #e2eef6;
+  --surface-gray-3: #d6e9f5;
+  --wk-chat-bg: #f4f9fc;
+}
+
+html.dark {
+  --surface-sidebar: #0c1a2b;
+  --wk-chat-bg: #0b1622;
+  --wk-other-bubble: #16263a;
+  --wk-line: #1f3a55;
+  --wk-grad-soft: linear-gradient(180deg, #0c1a2b 0%, #0b1f24 100%);
+}
+
+/* ---------- Top bars: gradient with white text ---------- */
+/* channel list header (mobile) and channel / thread headers */
+nav > div.h-11:first-child,
+div.h-11.border-b.bg-surface-base.justify-between {
+  background: var(--wk-grad) !important;
+  border-bottom-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(10, 74, 133, 0.25);
+}
+nav > div.h-11:first-child *,
+div.h-11.border-b.bg-surface-base.justify-between * {
+  color: #fff !important;
+}
+nav > div.h-11:first-child button:hover,
+div.h-11.border-b.bg-surface-base.justify-between button:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+nav > div.h-11:first-child [data-slot="avatar-fallback"],
+div.h-11.border-b.bg-surface-base.justify-between [data-slot="avatar-fallback"] {
+  background: rgba(255, 255, 255, 0.22) !important;
+  color: #fff !important;
+}
+@media (min-width: 48rem) {
+  /* desktop: sidebar header keeps the soft look, chat header stays gradient */
+  nav > div.h-11:first-child {
+    background: transparent !important;
+    box-shadow: none;
+  }
+  nav > div.h-11:first-child * {
+    color: var(--wk-deep) !important;
+  }
+  html.dark nav > div.h-11:first-child * {
+    color: #e6f4fb !important;
+  }
+}
+
+/* ---------- Sidebars ---------- */
+.md\:bg-surface-sidebar,
+.bg-surface-sidebar {
+  background-image: var(--wk-grad-soft);
+}
+/* desktop workspace rail */
+.w-\(--primary-sidebar-width\).bg-surface-sidebar {
+  background: linear-gradient(180deg, #0a4a85 0%, #0b74c4 60%, #10b4cf 100%) !important;
+  border-right-color: transparent !important;
+}
+.w-\(--primary-sidebar-width\).bg-surface-sidebar svg {
+  color: #fff !important;
+}
+
+/* ---------- Channel rows: coloured icon tiles ---------- */
+nav.md\:bg-surface-sidebar a[href] > svg:first-child {
+  box-sizing: content-box;
+  padding: 4px;
+  border-radius: 8px;
+  color: #fff !important;
+  background: var(--wk-c-other);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  margin-right: 4px;
+}
+nav.md\:bg-surface-sidebar a[href*="announcements"] > svg:first-child { background: var(--wk-c-announce); }
+nav.md\:bg-surface-sidebar a[href*="general"] > svg:first-child { background: var(--wk-c-general); }
+nav.md\:bg-surface-sidebar a[href*="technical"] > svg:first-child { background: var(--wk-c-tech); }
+nav.md\:bg-surface-sidebar a[href*="operators"] > svg:first-child { background: var(--wk-c-ops); }
+nav.md\:bg-surface-sidebar a[href*="hr-admin"] > svg:first-child { background: var(--wk-c-hr); }
+nav.md\:bg-surface-sidebar a[href*="accounts-finance"] > svg:first-child { background: var(--wk-c-fin); }
+nav.md\:bg-surface-sidebar a[href*="management"] > svg:first-child { background: var(--wk-c-mgmt); }
+
+nav.md\:bg-surface-sidebar a[href] {
+  color: var(--wk-deep);
+}
+html.dark nav.md\:bg-surface-sidebar a[href] {
+  color: #d7e9f6;
+}
+nav.md\:bg-surface-sidebar a[href]:hover {
+  background: rgba(16, 180, 207, 0.12) !important;
+}
+/* active channel: gradient pill */
+nav.md\:bg-surface-sidebar a[aria-current="page"] {
+  background: var(--wk-grad) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 10px rgba(11, 116, 196, 0.3) !important;
+}
+nav.md\:bg-surface-sidebar a[aria-current="page"] * {
+  color: #fff !important;
+}
+nav.md\:bg-surface-sidebar a[aria-current="page"] > svg:first-child {
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+/* unread counter */
+nav.md\:bg-surface-sidebar a[href] .tabular-nums {
+  background: var(--wk-c-announce) !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  min-width: 20px;
+  padding: 0 6px !important;
+}
+/* sidebar section headers */
+nav.md\:bg-surface-sidebar .group\/collapsible button {
+  color: var(--wk-blue) !important;
+  font-weight: 600;
+}
+
+/* ---------- Mobile bottom tab bar ---------- */
+div.md\:hidden.grid.grid-cols-5 {
+  background: #ffffff !important;
+  border-top: 0 !important;
+  box-shadow: 0 -4px 16px rgba(10, 74, 133, 0.1);
+  position: relative;
+}
+div.md\:hidden.grid.grid-cols-5::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--wk-grad);
+}
+html.dark div.md\:hidden.grid.grid-cols-5 {
+  background: #0c1a2b !important;
+}
+div.md\:hidden.grid.grid-cols-5 [data-active="true"] {
+  color: var(--wk-blue) !important;
+}
+div.md\:hidden.grid.grid-cols-5 [data-active="true"] svg {
+  color: var(--wk-blue) !important;
+}
+div.md\:hidden.grid.grid-cols-5 [data-active="true"] > div:first-child {
+  background: rgba(16, 180, 207, 0.15);
+  border-radius: 999px;
+  padding: 2px 14px;
+}
+html.dark div.md\:hidden.grid.grid-cols-5 [data-active="true"],
+html.dark div.md\:hidden.grid.grid-cols-5 [data-active="true"] svg {
+  color: #4cc9e6 !important;
+}
+
+/* ---------- Chat area: light water wallpaper ---------- */
+.\[overflow-anchor\:none\] {
+  background-color: var(--wk-chat-bg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%230b74c4' fill-opacity='0.055'%3E%3Cpath d='M24 14c0 0-9 11-9 17a9 9 0 0 0 18 0c0-6-9-17-9-17z'/%3E%3Cpath d='M98 64c0 0-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z'/%3E%3Cpath d='M44 98c0 0-7 9-7 13a7 7 0 0 0 14 0c0-4-7-13-7-13z'/%3E%3C/g%3E%3Cpath d='M0 62c12-8 24-8 36 0s24 8 36 0 24-8 36 0 24 8 32 2' fill='none' stroke='%2310b4cf' stroke-opacity='0.08' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+html.dark .\[overflow-anchor\:none\] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='%2310b4cf' fill-opacity='0.06'%3E%3Cpath d='M24 14c0 0-9 11-9 17a9 9 0 0 0 18 0c0-6-9-17-9-17z'/%3E%3Cpath d='M98 64c0 0-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z'/%3E%3Cpath d='M44 98c0 0-7 9-7 13a7 7 0 0 0 14 0c0-4-7-13-7-13z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* sender names in brand blue */
+[data-message-row] .font-medium.text-content {
+  color: var(--wk-blue) !important;
+  font-weight: 600;
+}
+html.dark [data-message-row] .font-medium.text-content {
+  color: #4cc9e6 !important;
+}
+[data-message-row]:hover {
+  background-color: rgba(16, 180, 207, 0.07) !important;
+}
+
+/* Left-Right (WhatsApp-style) bubbles */
+[data-message-row="own"] .rounded-\[18px\] {
+  background: var(--wk-grad) !important;
+  color: var(--wk-own-text) !important;
+  border-bottom-right-radius: 6px !important;
+  box-shadow: 0 2px 6px rgba(11, 116, 196, 0.25);
+}
+[data-message-row="own"] .rounded-\[18px\] *,
+[data-message-row="own"] .rounded-\[18px\] a {
+  color: #fff !important;
+}
+[data-message-row="left-right"] .rounded-\[18px\] {
+  background: var(--wk-other-bubble) !important;
+  border: 1px solid var(--wk-line);
+  border-bottom-left-radius: 6px !important;
+  box-shadow: 0 1px 3px rgba(10, 74, 133, 0.08);
+}
+
+/* date separator pill */
+.relative.flex.items-center.justify-center.py-2 > [data-slot="badge"] {
+  background: var(--wk-grad) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 2px 6px rgba(11, 116, 196, 0.25);
+}
+
+/* @mentions */
+.tiptap .mention:not([data-self="true"]) {
+  color: var(--wk-blue) !important;
+  background: rgba(16, 180, 207, 0.12);
+}
+.tiptap a {
+  color: var(--wk-blue);
+}
+
+/* ---------- Composer ---------- */
+.rounded-2xl.bg-surface-gray-1 {
+  background: #ffffff !important;
+  border: 1.5px solid var(--wk-line);
+}
+.rounded-2xl.bg-surface-gray-1:focus-within {
+  border-color: var(--wk-aqua);
+  box-shadow: 0 0 0 3px rgba(16, 180, 207, 0.15);
+}
+html.dark .rounded-2xl.bg-surface-gray-1 {
+  background: #16263a !important;
+}
+[data-raven-editor] > div:first-child:focus-within {
+  border-color: var(--wk-aqua) !important;
+  box-shadow: 0 0 0 3px rgba(16, 180, 207, 0.15);
+}
+
+/* send button + primary (solid) buttons */
+button[aria-label="Send message"],
+button[aria-label="Send message silently"],
+button.bg-surface-gray-10 {
+  background: var(--wk-grad) !important;
+  color: #fff !important;
+  border: 0 !important;
+}
+button[aria-label="Send message"] svg,
+button[aria-label="Send message silently"] svg {
+  color: #fff !important;
+}
+button[aria-label="Send message"]:disabled,
+button[aria-label="Send message silently"]:disabled {
+  opacity: 0.45;
+}
+button.bg-surface-gray-10:hover {
+  filter: brightness(1.08);
+}
+
+/* toggles and checkboxes */
+button[role="switch"][data-state="checked"],
+button[role="checkbox"][data-state="checked"] {
+  background: var(--wk-blue) !important;
+  border-color: var(--wk-blue) !important;
+}
+
+/* ---------- Channel names start with a capital letter ---------- */
+/* Raven stores channel names in lower case; this only changes how they show. */
+nav.md\:bg-surface-sidebar a[href] > span.truncate,
+div.h-11.border-b.bg-surface-base.justify-between span.font-medium.truncate,
+.tiptap .mention[data-type="channelMention"] {
+  text-transform: capitalize;
+}
+/* keep "HR" in capitals in the channel list */
+nav.md\:bg-surface-sidebar a[href*="hr-admin"] > span.truncate {
+  font-size: 0 !important;
+}
+nav.md\:bg-surface-sidebar a[href*="hr-admin"] > span.truncate::after {
+  content: "HR-Admin";
+  text-transform: none;
+  font-size: var(--text-lg, 17px);
+}
+@media (min-width: 48rem) {
+  nav.md\:bg-surface-sidebar a[href*="hr-admin"] > span.truncate::after {
+    font-size: var(--text-sm, 13px);
+  }
+}

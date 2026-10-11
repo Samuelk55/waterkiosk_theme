@@ -5,7 +5,18 @@ headers and buttons, a light water-drop chat background, coloured icons per chan
 (announcements, general, technical, operators, hr-admin, accounts-finance, management),
 and WhatsApp-style blue bubbles for your own messages.
 
-It touches **only** the `/raven` pages. Desk, ERPNext, the Hub and the ESS app are not affected.
+It also makes the WaterKiosk Hub the front door of the ERP:
+
+- `/hub` always shows the Hub (the page itself lives at `/me`), so it works as everyone's home page.
+- A **WaterKiosk Hub** tile on the desk home screen, and a **Hub** button on every desk page.
+- **Field staff stay on the Hub.** Operators, riders and technicians (by role `Kiosk Operator` /
+  `WK Technician`, or by employee designation Operator / Rider / Technician) are redirected to the Hub
+  if they open the desk or the office apps (`/desk`, `/app`, `/apps`, `/crm`, `/helpdesk`, `/insights`).
+  Anyone with an office role (System Manager, WK Director, Kiosk Supervisor, WK Technical Supervisor,
+  HR or Accounts roles) keeps desk access. Edit the lists at the top of `waterkiosk_theme/access.py`.
+- `waterkiosk_theme.access.can_use_desk` tells the Hub whether to show its Desk button.
+
+Raven styling touches only the `/raven` pages.
 
 ## Install on Frappe Cloud (private bench)
 
